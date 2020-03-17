@@ -17,22 +17,22 @@
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>230</x>
-      <y>120</y>
+      <x>390</x>
+      <y>100</y>
       <width>371</width>
-      <height>241</height>
+      <height>301</height>
      </rect>
     </property>
     <property name="title">
      <string>SignIn</string>
     </property>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>43</y>
+       <y>33</y>
        <width>321</width>
-       <height>171</height>
+       <height>241</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
@@ -73,6 +73,22 @@
       </item>
      </layout>
     </widget>
+   </widget>
+   <widget class="QLabel" name="label_pic">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>120</y>
+      <width>301</width>
+      <height>261</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="scaledContents">
+     <bool>false</bool>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
