@@ -17,6 +17,7 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QProgressBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QVBoxLayout>
@@ -39,6 +40,8 @@ public:
     QLineEdit *Password;
     QPushButton *Login;
     QLabel *label_pic;
+    QLabel *label_3;
+    QProgressBar *progressBar;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -97,6 +100,13 @@ public:
         label_pic->setObjectName(QString::fromUtf8("label_pic"));
         label_pic->setGeometry(QRect(40, 120, 301, 261));
         label_pic->setScaledContents(false);
+        label_3 = new QLabel(centralwidget);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+        label_3->setGeometry(QRect(540, 510, 64, 15));
+        progressBar = new QProgressBar(centralwidget);
+        progressBar->setObjectName(QString::fromUtf8("progressBar"));
+        progressBar->setGeometry(QRect(380, 500, 118, 23));
+        progressBar->setValue(24);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -119,6 +129,7 @@ public:
         label_2->setText(QCoreApplication::translate("MainWindow", "Password", nullptr));
         Login->setText(QCoreApplication::translate("MainWindow", "LogIn", nullptr));
         label_pic->setText(QString());
+        label_3->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
     } // retranslateUi
 
 };
