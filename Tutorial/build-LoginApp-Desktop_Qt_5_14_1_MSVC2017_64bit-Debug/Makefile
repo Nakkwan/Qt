@@ -266,6 +266,7 @@ Makefile: ..\LoginApp\LoginApp.pro C:\Qt5\5.14.1\msvc2017_64\mkspecs\win32-msvc\
 		C:\Qt5\5.14.1\msvc2017_64\lib\Qt5Core.prl \
 		C:\Qt5\5.14.1\msvc2017_64\lib\qtmain.prl \
 		C:\Qt5\5.14.1\msvc2017_64\mkspecs\features\build_pass.prf \
+		..\LoginApp\Resource.qrc \
 		C:\Qt5\5.14.1\msvc2017_64\lib\Qt5Widgetsd.prl \
 		C:\Qt5\5.14.1\msvc2017_64\lib\Qt5Guid.prl \
 		C:\Qt5\5.14.1\msvc2017_64\lib\Qt5Cored.prl \
@@ -453,6 +454,7 @@ C:\Qt5\5.14.1\msvc2017_64\lib\Qt5Gui.prl:
 C:\Qt5\5.14.1\msvc2017_64\lib\Qt5Core.prl:
 C:\Qt5\5.14.1\msvc2017_64\lib\qtmain.prl:
 C:\Qt5\5.14.1\msvc2017_64\mkspecs\features\build_pass.prf:
+..\LoginApp\Resource.qrc:
 C:\Qt5\5.14.1\msvc2017_64\lib\Qt5Widgetsd.prl:
 C:\Qt5\5.14.1\msvc2017_64\lib\Qt5Guid.prl:
 C:\Qt5\5.14.1\msvc2017_64\lib\Qt5Cored.prl:

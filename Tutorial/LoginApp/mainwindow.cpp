@@ -9,12 +9,19 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    QPixmap pix("C:/Users/cvvc1/Pictures/Saved Pictures/ship.jpg");
+
+    /*set picture from local folder*/
+//    QPixmap pix("C:/Users/cvvc1/Pictures/Saved Pictures/ship.jpg");
+
+    /*Set picture from resource file in Qt*/
+    QPixmap pix(":/Resource/img/ship.jpg");
     int w = ui->label_pic->width();
     int h = ui->label_pic->height();
     ui->label_pic->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
     ui->statusbar->addPermanentWidget(ui->label_3, 0);
     ui->statusbar->addPermanentWidget(ui->progressBar, 0);
+
+
 }
 
 MainWindow::~MainWindow()
