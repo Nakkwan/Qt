@@ -3,6 +3,8 @@
 #include <QFile>
 #include <QTextStream>
 #include <QMessageBox>
+#include <QFileDialog>
+#include <QDir>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -34,7 +36,11 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_pushButton_2_clicked()
 {
-    QFile ifile("C:/Users/cvvc1/Desktop/Qt/Tutorial/QFileDemo/myfile.txt");
+//    QFile ifile("C:/Users/cvvc1/Desktop/Qt/Tutorial/QFileDemo/myfile.txt");
+
+    QString filter = "All File (*.*) ;; Text File (*.txt) ;; XML File (*.xml) ;; CPP File(*.cpp)";
+    QString filename = QFileDialog::getOpenFileName(this, "Open file", QDir::currentPath(), filter);
+    QFile ifile(filename);
     if(!ifile.open(QFile::ReadOnly | QFile::Text)){
         QMessageBox::warning(this, "title", "File is not open");
     }
@@ -44,4 +50,12 @@ void MainWindow::on_pushButton_2_clicked()
         ui->plainTextEdit->setPlainText(text);
         ifile.close();
     }
+
+
+}
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    QString filename = QFileDialog::getOpenFileName(this, "Open file", QDir::currentPath());
+    QMessageBox::information(this, "title", filename);
 }
