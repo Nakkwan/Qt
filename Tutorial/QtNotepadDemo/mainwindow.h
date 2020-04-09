@@ -34,7 +34,10 @@ private slots:
 
     void on_actionAbout_NotePad_triggered();
 
+    void on_actionNew_triggered();
+
 private:
     Ui::MainWindow *ui;
+    QString file_path;
 };
 #endif // MAINWINDOW_H
