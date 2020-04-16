@@ -4,6 +4,11 @@
 #include <QFile>
 #include <QTextStream>
 #include <QMessageBox>
+#include <QFontDialog>
+#include <QFont>
+#include <QColorDialog>
+#include <QColor>
+#include <QPalette>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -106,4 +111,37 @@ void MainWindow::on_actionAbout_NotePad_triggered()
     aboutText += "Date: 2020-04-10\n";
     aboutText += "(C) NotePad (R)";
     QMessageBox::about(this, "About NotePad", aboutText);
+}
+
+void MainWindow::on_actionFont_triggered()
+{
+    bool ok;
+    QFont font = QFontDialog::getFont(&ok, this);
+    if(ok){
+        ui->textEdit->setFont(font);
+    }else return;
+}
+
+void MainWindow::on_actionColor_triggered()
+{
+    QColor color = QColorDialog::getColor(Qt::black, this, "Choose Color");
+    if(color.isValid()){
+        ui->textEdit->setTextColor(color);
+    }
+}
+
+void MainWindow::on_actionBackground_Color_triggered()
+{
+    QColor color = QColorDialog::getColor(Qt::black, this, "Choose Color");
+    if(color.isValid()){
+        ui->textEdit->setTextBackgroundColor(color);
+    }
+}
+
+void MainWindow::on_actionBackground_Color_2_triggered()
+{
+    QColor color = QColorDialog::getColor(Qt::white, this, "Choose Color");
+    if(color.isValid()){
+        ui->textEdit->setPalette(QPalette(color));
+    }
 }
