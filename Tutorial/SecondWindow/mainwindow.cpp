@@ -23,7 +23,7 @@ void MainWindow::on_pushButton_clicked()
 //    secWindow.setModal(true);
 //    secWindow.exec();
 
-    hide();         //hide mainwindow when pushbutton clicked
+    //hide();         //hide mainwindow when pushbutton clicked
 
     //create pointer in mainwindow.h for create object by heap
     secWindow = new SecWin(this);
