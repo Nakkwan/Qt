@@ -30,12 +30,12 @@ void MainWindow::on_pushButton_clicked()
     //QMessageBox::information(this,"My title", "This is my custom message");
     //QMessageBox::question(this,"My title", "This is my custom message", QMessageBox::Yes | QMessageBox::No);
     //QMessageBox::warning(this,"My title", "This is my custom message");
-    QMessageBox::StandardButton reply = QMessageBox::question(this,"My title", "This is my custom message",
+    QMessageBox::question(this,"My title", "This is my custom message",
                                                               QMessageBox::Yes | QMessageBox::No);
-    if(reply == QMessageBox::Yes){
-        QApplication::quit();
-    } else{
-        qDebug() << "Nothing is clicked";
-    }
+//    if(reply == QMessageBox::Yes){
+//        QApplication::quit();
+//    } else{
+//        qDebug() << "Nothing is clicked";
+//    }
 
 }
