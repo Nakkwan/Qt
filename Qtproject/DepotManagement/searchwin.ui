@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Searchwin</class>
+ <widget class="QWidget" name="Searchwin">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>548</width>
+    <height>394</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="tabShape">
+      <enum>QTabWidget::Rounded</enum>
+     </property>
+     <property name="currentIndex">
+      <number>4</number>
+     </property>
+     <property name="documentMode">
+      <bool>true</bool>
+     </property>
+     <property name="movable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="SearchbyLabel">
+      <attribute name="title">
+       <string>Label검색</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="SearchbyName">
+      <attribute name="title">
+       <string>이름검색</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="SearchbyDate">
+      <attribute name="title">
+       <string>날짜로 검색</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="SearchStorage">
+      <attribute name="title">
+       <string>Storage</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="SearchFloor">
+      <attribute name="title">
+       <string>Floor</string>
+      </attribute>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

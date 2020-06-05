@@ -20,7 +20,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::Init(){
+void MainWindow::Init(){                                                //banker 초기값 설정
     for(int i = 0; i <num_process; i++){
         for(int j = 0; j < num_instance; j++){
             banker.max[i][j] = 0;
@@ -74,7 +74,7 @@ void MainWindow::SetTable(){
     }
 }
 
-void MainWindow::Setallocation(){
+void MainWindow::Setallocation(){                                           //banker 자료구조에 따른 allocation table 설정
     for(int i = 0; i < num_process; i++){
         for(int j = 0; j < num_instance; j++){
             QTableWidgetItem* content = new QTableWidgetItem;
@@ -84,7 +84,7 @@ void MainWindow::Setallocation(){
     }
 }
 
-void MainWindow::SetNeed(){
+void MainWindow::SetNeed(){                                                 //banker 자료구조에 따른 need table 설정
     for(int i = 0; i < num_process; i++){
         for(int j = 0; j < num_instance; j++){
             QTableWidgetItem* content = new QTableWidgetItem;
@@ -94,7 +94,7 @@ void MainWindow::SetNeed(){
     }
 }
 
-void MainWindow::SetAvailable(){
+void MainWindow::SetAvailable(){                                            //banker 자료구조에 따른 available table 설정
     for(int i = 0; i < num_instance; i++){
         QTableWidgetItem* content = new QTableWidgetItem;
         content->setText(QString::number(banker.available[i]));
@@ -102,25 +102,25 @@ void MainWindow::SetAvailable(){
     }
 }
 
-bool MainWindow::safety(){
+bool MainWindow::safety(){                                                  //safety algorithm
     bool check = true;
     int count = 0;
 
     for(int i = 0; i < num_process; i++){
         for(int j = 0; j < num_process; j++){
-            if(banker.finish[j] == false){
+            if(banker.finish[j] == false){                              //이미 할당이 끝난 process인지 확인
                 for(int k = 0; k < num_instance; k++){
                    if(banker.work[k] < banker.need[j][k]){
                        check = false;
                        break;
                    }
                 }
-                if(check == true){
-                    banker.finish[j] = true;
-                    for(int k = 0; k < num_instance; k++){
+                if(check == true){                                      //work보다 need가 작다면
+                    banker.finish[j] = true;                            //할당 상태를 true 해주고
+                    for(int k = 0; k < num_instance; k++){              //자원 반환
                         banker.work[k] += banker.allocation[j][k];
                     }
-                    banker.request_flag[count] = banker.process[j];
+                    banker.request_flag[count] = banker.process[j];     //이름 추가
                     count++;
                     break;
                 }else {
@@ -130,11 +130,11 @@ bool MainWindow::safety(){
         }
     }
 
-    for(int i = 0; i < num_process; i++){
+    for(int i = 0; i < num_process; i++){                               //다음 사용을 위한 초기화
         banker.finish[i] = false;
     }
 
-    if(count == num_process){
+    if(count == num_process){                                           //safety 성공 여부 확인
         return true;
     }
 

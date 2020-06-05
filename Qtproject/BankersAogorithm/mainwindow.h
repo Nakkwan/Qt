@@ -12,17 +12,17 @@ namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
 struct Banker{
-    QString process[MAXPROCESS];
-    QString instance[MAXINSTANCE];
-    int instMax[MAXINSTANCE];
-    int allocation[MAXPROCESS][MAXINSTANCE];
-    int max[MAXPROCESS][MAXINSTANCE];
-    int available[MAXINSTANCE];
-    int need[MAXPROCESS][MAXINSTANCE];
-    int work[MAXINSTANCE];
-    int finish[MAXPROCESS];
-    int request[MAXINSTANCE];
-    QString request_flag[MAXPROCESS];
+    QString process[MAXPROCESS];                        //프로세스의 이름 P0부터 순차적으로 증가
+    QString instance[MAXINSTANCE];                      //각 인스턴스의 이름 A부터 순차적으로 증가
+    int instMax[MAXINSTANCE];                           //각 인스턴스의 최대 할당값
+    int allocation[MAXPROCESS][MAXINSTANCE];            //현재 할당된 수
+    int max[MAXPROCESS][MAXINSTANCE];                   //각 process의 instance당 max
+    int available[MAXINSTANCE];                         //available
+    int need[MAXPROCESS][MAXINSTANCE];                  //need
+    int work[MAXINSTANCE];                              //safety algorithm에서 계산을 위한 work
+    int finish[MAXPROCESS];                             //safety algorithm에서 할당 해제가 끝난 건지 여부
+    int request[MAXINSTANCE];                           //요청한 process에 관한 instance의 개수
+    QString request_flag[MAXPROCESS];                   //safety algorithm에서 우선 할당되는 process 순으로 입력을 위함
 };
 
 class MainWindow : public QMainWindow
