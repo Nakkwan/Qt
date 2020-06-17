@@ -1,14 +1,14 @@
 #include "searchwin.h"
 #include "ui_searchwin.h"
 
-Searchwin::Searchwin(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::Searchwin)
+SearchWin::SearchWin(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::SearchWin)
 {
     ui->setupUi(this);
 }
 
-Searchwin::~Searchwin()
+SearchWin::~SearchWin()
 {
     delete ui;
 }

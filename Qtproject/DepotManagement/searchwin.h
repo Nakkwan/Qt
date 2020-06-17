@@ -1,22 +1,22 @@
 #ifndef SEARCHWIN_H
 #define SEARCHWIN_H
 
-#include <QWidget>
+#include <QDialog>
 
 namespace Ui {
-class Searchwin;
+class SearchWin;
 }
 
-class Searchwin : public QWidget
+class SearchWin : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit Searchwin(QWidget *parent = nullptr);
-    ~Searchwin();
+    explicit SearchWin(QWidget *parent = nullptr);
+    ~SearchWin();
 
 private:
-    Ui::Searchwin *ui;
+    Ui::SearchWin *ui;
 };
 
 #endif // SEARCHWIN_H

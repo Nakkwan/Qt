@@ -100,4 +100,4 @@ DoublyNode<T> DoublyIterator<T> ::GetCurrentNode()
 	return *m_pCurPointer;
 }
 
-#endif
+#endif _DOUBLYITERATOR_H

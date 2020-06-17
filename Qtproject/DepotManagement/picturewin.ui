@@ -1,6 +1,6 @@
 <ui version="4.0">
- <class>SearchWin</class>
- <widget name="SearchWin" class="QDialog">
+ <class>PictureWin</class>
+ <widget class="QDialog" name="PictureWin">
   <property name="geometry">
    <rect>
     <x>0</x>
