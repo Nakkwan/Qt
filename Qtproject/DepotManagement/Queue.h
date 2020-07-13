@@ -9,11 +9,10 @@ private:
 	int Q_size;					//데이터가 들어갈 수 있는 전체 queue의 크기, 전체 할당된 크기는 Q_size + 1이다.
 	int Q_curSize;				//현재 저장된 것들의 크기
 	int Q_curPointer;			//포인터
-	T* Q_item;
+    T **Q_item;
 
 public:
 	Queue();					//생성자
-	Queue(int size);			//생성자
 	~Queue();					//소멸자
 
 	/*
@@ -43,7 +42,7 @@ public:
 	@post: queue에 데이터가 추가되고 크기가 1 늘어남. head가 다음 칸으로 이동
 	@return: 추가가 되면 1, 안되면 0 return
 	*/
-	int Enqueue(T& data);
+    int Enqueue(T*& data);
 
 	/*
 	@brief: queue에 먼저 들어온 데이터 삭제
@@ -52,7 +51,7 @@ public:
 	@param: 삭제된 데이터를 reference로 받을 변수
 	@return: 삭제가 되면 1, 안되면 0 return
 	*/
-	int Dequeue(T& data);
+    int Dequeue(T*& data);
 
 	/*
 	@brief: queue의 사이즈 확인
@@ -75,7 +74,7 @@ public:
 	@param: 데이터를 받을 변수
 	@return: pointer return
 	*/
-	int GetNextItem(T& data);
+    int GetNextItem(T*& data);
 
 	/*
 	@brief: 데이터를 찾음
@@ -84,7 +83,7 @@ public:
 	@param: 반환 받을 변수
 	@return: 데이터를 찾으면 1, 아니면 0을 return
 	*/
-	int Get(T& data);
+    int Get(T*& data);
 
 	/*
 	@brief: 해당하는 데이터 삭제
@@ -93,7 +92,7 @@ public:
 	@param: 삭제할 데이터의 정보가 담긴 변수
 	@return: 삭제가 되면 1 아니면 0을 return
 	*/
-	int Delete(const T& data);
+    int Delete(T*& data);
 
 	/*
 	@brief: queue의 element를 교체
@@ -102,28 +101,19 @@ public:
 	@param: 교체할 데이터
 	@return: 데이터가 교체되면 1, 아니면 0을 return
 	*/
-	int Replace(T data);
+    int Replace(T*& data);
 };
 
 
 template<typename T>
 Queue<T>::Queue() {
-	Q_item = new T[MAXQUEUE];
+    Q_item = new T*[MAXQUEUE];
 	Q_size = MAXQUEUE - 1;
-	Q_head = Q_size;
-	Q_tail = Q_size;
+    Q_head = MAXQUEUE - 1;
+    Q_tail = MAXQUEUE - 1;
 	Q_curSize = 0;
 	Q_curPointer = -1;
-}
 
-template<typename T>
-Queue<T>::Queue(int size) {
-	Q_item = new T[size + 1];
-	Q_size = size;
-	Q_head = Q_size;
-	Q_tail = Q_size;
-	Q_curPointer = -1;
-	Q_curSize = 0;
 }
 
 template<typename T>
@@ -159,30 +149,29 @@ bool Queue<T>::IsEmpty() {
 }
 
 template<typename T>
-int Queue<T>::Enqueue(T& data) {					//추가
+int Queue<T>::Enqueue(T*& data) {
 	if (IsFull()) {
-		Q_head = (Q_head + 1) % (Q_size + 1);	//head를 다음칸으로 넘기고
-		Q_item[Q_head] = data;					//할당
-		Q_tail = (Q_tail + 1) % (Q_size + 1);
+        Q_head = (Q_head + 1) % (Q_size + 1);
+        Q_item[Q_head] = data;
+        Q_tail = (Q_tail + 1) % (Q_size + 1);
 	}
-	else {										//queue가 꽉차지 않았다면
-		Q_head = (Q_head + 1) % (Q_size + 1);	//head를 다음칸으로 넘기고
-		Q_item[Q_head] = data;					//할당
+    else {
+        Q_head = (Q_head + 1) % (Q_size + 1);
+        Q_item[Q_head] = data;
 		Q_curSize += 1;
 	}
 	return 1;
 }
 
 template<typename T>
-int Queue<T>::Dequeue(T& data) {
-	if (IsEmpty()) {
-		cout << "Error: Queue is already empty\n";
+int Queue<T>::Dequeue(T*& data) {
+    if (IsEmpty()){
 		return 0;
 	}
-	else {							//비어있지 않다면
-		Q_tail = (Q_tail + 1) % (Q_size + 1);	//Q_tail을 다음칸으로 넘기고
-		data = Q_item[Q_tail];						//값 반환 후
-		Q_curSize--;							//현재 queue 사이즈 줄임
+    else {
+        Q_tail = (Q_tail + 1) % (Q_size + 1);
+        data = Q_item[Q_tail];
+        Q_curSize--;
 	}
 	return 1;
 }
@@ -198,9 +187,9 @@ void Queue<T>::ResetQueue() {
 }
 
 template<typename T>
-int Queue<T>::GetNextItem(T& data) {
-	if (Q_curPointer == Q_head) {					//head랑 같아졌다면
-		Q_curPointer = -1;							//-1 반환(-1은 배열엔 없는 수이기 때문)
+int Queue<T>::GetNextItem(T*& data) {
+    if (Q_curPointer == Q_head) {
+        Q_curPointer = -1;
 		return Q_curPointer;
 	}
 	else {
@@ -211,8 +200,8 @@ int Queue<T>::GetNextItem(T& data) {
 }
 
 template<typename T>
-int Queue<T>::Get(T& data) {
-	T temp;
+int Queue<T>::Get(T*& data) {
+    T* temp;
 	ResetQueue();
 	GetNextItem(temp);
 	while (Q_curPointer != -1) {
@@ -229,8 +218,8 @@ int Queue<T>::Get(T& data) {
 }
 
 template<typename T>
-int Queue<T>::Delete(const T& data) {
-	T temp;
+int Queue<T>::Delete(T*& data) {
+    T* temp;
 	ResetQueue();
 	GetNextItem(temp);
 	if (IsEmpty()) {
@@ -238,17 +227,17 @@ int Queue<T>::Delete(const T& data) {
 	}
 	else {
 		while (Q_curPointer != -1) {
-			if (temp == data) {				//지울 item을 찾았다면
+            if (temp == data) {
 				int i = Q_curPointer;
 				int j;
-				while (i != ((Q_tail + 1) % (Q_size + 1))) {		//tail과 같아질 때까지
+                while (i != ((Q_tail + 1) % (Q_size + 1))) {
 					if (i > 0) {
 						j = i - 1;
 					}
 					else {
 						j = Q_size;
 					}
-					Q_item[i] = Q_item[j];		//아이템 당기기
+                    Q_item[i] = Q_item[j];
 					i = j;
 				}
 				Q_size--;
@@ -264,8 +253,8 @@ int Queue<T>::Delete(const T& data) {
 }
 
 template<typename T>
-int Queue<T>::Replace(T data) {
-	T temp;
+int Queue<T>::Replace(T*& data) {
+    T* temp;
 	ResetQueue();
 	GetNextItem(temp);
 	while (Q_curPointer != -1) {

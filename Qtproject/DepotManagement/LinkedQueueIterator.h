@@ -20,7 +20,7 @@ public:
 	@pre: none
 	@post: none
 	*/
-	T Next();
+    T* Next();
 
 	/*
 	@brief: 현재 포인터가 가르키는 노드를 반환한다.
@@ -54,7 +54,7 @@ public:
 };
 
 template<typename T>
-T LinkedQueueIterator<T>::Next() {
+T* LinkedQueueIterator<T>::Next() {
 	L_pointer = L_pointer->next;
 	return L_pointer->value;
 }

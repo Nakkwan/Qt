@@ -1,2 +1,20 @@
-<!DOCTYPE RCC>
-<RCC version="1.0"/>
+<RCC>
+    <qresource prefix="/images">
+        <file>images/LoadingImage.png</file>
+        <file>images/background_memo.png</file>
+        <file>images/background2.png</file>
+        <file>images/background.png</file>
+        <file>images/Back2.png</file>
+        <file>images/check_after.png</file>
+        <file>images/check_before.png</file>
+        <file>images/DownArrow.png</file>
+        <file>images/SaveIcon.png</file>
+        <file>images/SearchAddIcon.png</file>
+        <file>images/SearchIcon.png</file>
+        <file>images/SetIcon.png</file>
+        <file>images/UpArrow.png</file>
+        <file>images/LoadingBackground.png</file>
+        <file>images/SearchBackground.png</file>
+        <file>images/SedraSmith.jpg</file>
+    </qresource>
+</RCC>

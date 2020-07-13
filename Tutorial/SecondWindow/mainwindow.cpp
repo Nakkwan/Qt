@@ -26,6 +26,7 @@ void MainWindow::on_pushButton_clicked()
     //hide();         //hide mainwindow when pushbutton clicked
 
     //create pointer in mainwindow.h for create object by heap
+    delete secWindow;
     secWindow = new SecWin(this);
     secWindow->show();
 

@@ -1,8 +1,9 @@
 #include "ItemType.h"
 
-SingleLinkedList<QString> ItemType::O_TypeList;
-
-QString ItemType::GetName() const {
+int ItemType::GetKey() const{
+    return O_key;
+}
+string ItemType::GetName() const {
 	return O_Name;
 }
 int ItemType::GetBuyDate() const {
@@ -11,31 +12,28 @@ int ItemType::GetBuyDate() const {
 int ItemType::GetLabel() const {
 	return O_Label;
 }
-QString ItemType::GetType() const {
+string ItemType::GetType() const {
 	return O_Type;
 }
 int ItemType::GetVolume() const {
 	return O_Volume;
 }
-int ItemType::GetRoomID() const {
-	return O_RoomID;
+int ItemType::GetStorageID() const {
+    return O_StorageID;
 }
-int ItemType::GetDrawerID() const {
-	return O_DrawerID;
+int ItemType::GetFloorID() const {
+    return O_FloorID;
 }
-int ItemType::GetContainerID() const {
-	return O_ContainerID;
-}
-QString ItemType::GetPicture() const {
+string ItemType::GetPicture() const {
 	return O_Picture;
 }
-void ItemType::SetName(QString inName) {
+void ItemType::SetName(string inName) {
 	O_Name = inName;
 }
 void ItemType::SetBuyDate(int inDate) {
 	O_BuyDate = inDate;
 }
-void ItemType::SetType(QString inType) {
+void ItemType::SetType(string inType) {
 	O_Type = inType;
 }
 void ItemType::SetLabel(int inLabel) {
@@ -44,74 +42,50 @@ void ItemType::SetLabel(int inLabel) {
 void ItemType::SetVolume(int inVolume) {
 	O_Volume = inVolume;
 }
-void ItemType::SetPicture(QString inPic) {
+void ItemType::SetPicture(string inPic) {
 	O_Picture = inPic;
 }
 
-void ItemType::SetContainerID() {
-	O_ContainerID = O_Label / 100;
+void ItemType::SetStorageID(int id) {
+    O_StorageID = id;
 }
-void ItemType::SetDrawerID() {
-	O_DrawerID = O_Label / 10000;
-}
-void ItemType::SetRoomID() {
-	O_RoomID = O_Label / 1000000;
+void ItemType::SetFloorID(int id) {
+    O_FloorID = id;
 }
 
-void ItemType::SetRecord(QString inName, int inDate, QString inType, int inLabel, int inVolume) {
-	O_Name = inName;
-	O_BuyDate = inDate;
-	O_Type = inType;
-	O_Label = inLabel;
-	O_Volume = inVolume;
-	SetContainerID();
-	SetDrawerID();
-	SetRoomID();
-}
 
 void ItemType::SetRecordByItem(const ItemType& data) {
-	O_Name = data.GetName();
-	O_RoomID = data.GetRoomID();
-	O_DrawerID = data.GetDrawerID();
-	O_ContainerID = data.GetContainerID();
-	O_Label = data.GetLabel();
-	O_Type = data.GetType();
-	O_BuyDate = data.GetBuyDate();
-	O_Volume = data.GetVolume();
-	O_Picture = data.GetPicture();
-	O_SearchNum = data.GetSearchNum();
-
+    *this = data;
 }	
 
 
-bool ItemType::CheckDate(int year, int month, int day) {					//날짜의 유효성 확인
-	if ((month % 2 == 1)) //odd month   
-	{
-		if (month <= 7)
-			if (day <= 0 || day > 31) return false;
-			else // month > 7   
-				if (day <= 0 || day > 30) return false;
-	}
-	else //even month  
-	{
-		if (month <= 6) {
-			if (month == 2)
-			{
-				if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0)) // leap year  
-				{
-					if (day <= 0 || day > 30) return false;
-				}
-				else if (day <= 0 || day > 28) return false;
+int ItemType::GetAttribute() const{
+    return O_atri;
+}
 
-			}
-			if (day <= 0 || day > 30) return false;
-		}
-		else { // month > 6  
+void ItemType::SetAttribute(int inattr){
+    O_atri = inattr;
+}
 
-			if (day <= 0 || day > 31) return false;
-		}
-	}
-	return true;
+string ItemType::DisplayItem(){
+    string temp;
+    temp.append("Label: " + to_string(GetLabel()) + "\n");
+    temp.append("이름: " + GetName() + "\n");
+    temp.append("Type: " + GetType() + "\n");
+    temp.append("개수: " + to_string(GetVolume()) + "\n");
+    temp.append("구입 날짜: " + to_string(GetBuyDate()) + "\n");
+    temp.append("보관 장소: " + to_string(GetStorageID()) + "번, " + to_string(GetFloorID()) + "층\n");
+    temp.append("사진: " + GetPicture());
+
+    return temp;
+}
+
+string ItemType::OutFile(){
+    string temp;
+    temp.append(to_string(O_key) + " " + to_string(O_Label) + " " + O_Name + " " + O_Type + " " + to_string(O_Volume) + " "
+                + to_string(O_BuyDate) + " " + to_string(O_atri) + " " + to_string(O_StorageID) + " " + to_string(O_FloorID) + " " + O_Picture + "\n");
+
+    return temp;
 }
 
 

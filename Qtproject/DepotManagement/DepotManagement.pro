@@ -2,7 +2,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-CONFIG += c++11 PRECOMPILED_HEADER
+CONFIG += c++11
 PRECOMPILED_HEADER = pch.h
 
 # The following define makes your compiler emit warnings if you use
@@ -18,32 +18,41 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     ItemType.cpp \
-    addwin.cpp \
+    base.cpp \
+    floortype.cpp \
     main.cpp \
     mainwindow.cpp \
+    object.cpp \
     pch.cpp \
-    searchwin.cpp
+    picturewin.cpp \
+    searchwin.cpp \
+    simpleitemtype.cpp \
+    storagetype.cpp
 
 HEADERS += \
-    BinarySearchTree.h \
+    AVLTree.h \
     DoublyIterator.h \
+    DoublyIterator.h \
+    DoublySortedLinkedList.h \
     DoublySortedLinkedList.h \
     ItemType.h \
     LinkedQueue.h \
     LinkedQueueIterator.h \
     Queue.h \
-    SingleLinkedList.h \
     SortedList.h \
-    Stack.h \
-    UnsortedList.h \
-    addwin.h \
+    base.h \
+    floortype.h \
     mainwindow.h \
+    object.h \
     pch.h \
-    searchwin.h
+    picturewin.h \
+    searchwin.h \
+    simpleitemtype.h \
+    storagetype.h
 
 FORMS += \
-    addwin.ui \
     mainwindow.ui \
+    picturewin.ui \
     searchwin.ui
 
 TRANSLATIONS += \
@@ -55,4 +64,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    Resource.qrc
+    Resources.qrc

@@ -19,8 +19,11 @@ public:
 private slots:
     void on_Login_clicked();
 
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     SecDialog *secDialog;
+    int count = 10;
 };
 #endif // MAINWINDOW_H

@@ -1,6 +1,6 @@
 #include "base.h"
 
-Base::Base()
-{
 
-}
+ItemType* Base::item;
+AVLTree<ItemType> Base::MasterList;
+DoublySortedLinkedList<StorageType> Base::StorageList;

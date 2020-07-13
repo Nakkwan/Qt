@@ -3,6 +3,7 @@
 #include "QString"
 #include <QMessageBox>
 #include <QPixmap>
+#include "QDebug"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -18,9 +19,8 @@ MainWindow::MainWindow(QWidget *parent)
     int w = ui->label_pic->width();
     int h = ui->label_pic->height();
     ui->label_pic->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
-    ui->statusbar->addPermanentWidget(ui->label_3, 0);
+    ui->statusbar->addPermanentWidget(ui->label_3, 5);
     ui->statusbar->addPermanentWidget(ui->progressBar, 0);
-
 
 }
 
@@ -47,4 +47,17 @@ void MainWindow::on_Login_clicked()
         ui->statusbar->showMessage("Username and password is not correct", 5000);
         ui->label_3->setText("Error");
     }
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    int temp = ui->Username->text().toInt();
+    if(temp == 0){
+        qDebug() << 1234 << endl;
+        return ;
+    }
+    qDebug() << temp << endl;
+
+   count = 20;
+
 }

@@ -5,7 +5,7 @@ class LinkedQueueIterator;
 
 template<typename T>
 struct QueueNode {
-	T value;
+    T* value;
 	QueueNode* next;
 	QueueNode* prev;
 };
@@ -40,14 +40,14 @@ public:
 	@pre: set data for add
 	@post: Queue의 rear에 데이터가 추가됨
 	*/
-	int Enqueue(const T& data);
+    int Enqueue(T*& data);
 
 	/*
 	@brief: Queue에서 데이터 삭제 후 반환
 	@pre: Queue is not empty
 	@post: Queue의 front 요소를 reference로 반환 후 삭제
 	*/
-	int Dequeue(T& data);
+    int Dequeue(T*& data);
 
 	/*
 	@brief: Queue의 사이즈 return
@@ -70,14 +70,14 @@ public:
 	@pre: queue is not empty
 	@post: queue의 rear data가 reference로 반환
 	*/
-	int Rear(T& data);
+    int Rear(T*& data);
 
 	/*
 	@brief: Queue의 front data를 반환
 	@pre: queue is not empty
 	@post: queue의 front data가 reference로 반환
 	*/
-	int Front(T& data);
+    int Front(T*& data);
 
 	/*
 	@brief: Queue를 비게 만듦
@@ -92,7 +92,7 @@ public:
 	@post: 해당하는 데이터를 찾고 reference로 반환함
 	@param: if find, return 1, otherwise return 0
 	*/
-	int Get(T& data);
+    int Get(T*& data);
 
 	/*
 	@brief: 해당 데이터를 삭제함
@@ -100,7 +100,7 @@ public:
 	@post: 해당하는 데이터를 삭제하고 reference로 반환함
 	@param: if delete, return 1, otherwise return 0
 	*/
-	int Delete(T& data);
+    int Delete(T*& data);
 
 	/*
 	@brief: 해당 요소의 값을 교체함
@@ -108,12 +108,11 @@ public:
 	@post: 해당하는 데이터를 찾고 value값을 갱신함
 	@param: if replace, return 1, otherwise return 0
 	*/
-	int Replace(const T& data);
+    int Replace(T*& data);
 };
 
 template<typename T>
-int LinkedQueue<T>::Enqueue(const T& data) {
-	LinkedQueueIterator<T> itor(*this);
+int LinkedQueue<T>::Enqueue(T*& data) {
 	QueueNode<T>* temp = new QueueNode<T>;
 	temp->value = data;
 	temp->next = Q_rear->next;
@@ -125,7 +124,7 @@ int LinkedQueue<T>::Enqueue(const T& data) {
 }
 
 template<typename T>
-int LinkedQueue<T>::Dequeue(T& data) {
+int LinkedQueue<T>::Dequeue(T*& data) {
 	if (IsEmpty()) {
 		return 0;
 	}
@@ -155,7 +154,7 @@ bool LinkedQueue<T>::IsEmpty() {
 }
 
 template<typename T>
-int LinkedQueue<T>::Rear(T& data) {
+int LinkedQueue<T>::Rear(T*& data) {
 	if (IsEmpty()) {
 		return 0;
 	}
@@ -166,7 +165,7 @@ int LinkedQueue<T>::Rear(T& data) {
 }
 
 template<typename T>
-int LinkedQueue<T>::Front(T& data) {
+int LinkedQueue<T>::Front(T*& data) {
 	if (IsEmpty()) {
 		return 0;
 	}
@@ -198,7 +197,7 @@ void LinkedQueue<T>::MakeEmpty() {
 }
 
 template<typename T>
-int LinkedQueue<T>::Get(T& data) {
+int LinkedQueue<T>::Get(T*& data) {
 	if (IsEmpty()) {
 		return 0;
 	}
@@ -211,12 +210,13 @@ int LinkedQueue<T>::Get(T& data) {
 			data = temp->value;
 			return 1;
 		}
+        itor.Next();
 	}
 	return 0;
 }
 
 template<typename T>
-int LinkedQueue<T>::Delete(T& data) {
+int LinkedQueue<T>::Delete(T*& data) {
 	if (IsEmpty()) {
 		return 0;
 	}
@@ -233,12 +233,13 @@ int LinkedQueue<T>::Delete(T& data) {
 			Q_size--;
 			return 1;
 		}
+        itor.Next();
 	}
 	return 0;
 }
 
 template<typename T>
-int LinkedQueue<T>::Replace(const T& data) {
+int LinkedQueue<T>::Replace(T*& data) {
 	if (IsEmpty()) {
 		return 0;
 	}
@@ -251,6 +252,7 @@ int LinkedQueue<T>::Replace(const T& data) {
 			temp->value = data;
 			return 1;
 		}
+        itor.Next();
 	}
 	return 0;
 }

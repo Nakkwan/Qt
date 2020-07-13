@@ -85,7 +85,7 @@ public:
 	@param: ItemType for delete
 	@return: return 1 if delete success, otherwise 0
 	*/
-	int Delete(T data);
+    int Delete(T& data);
 
 	/*
 	@brief: replace element of list correspond with ItemType
@@ -95,12 +95,10 @@ public:
 	*/
 	int Replace(T& data);
 
-	void operator=(const SortedList& data) {
-		delete[] m_Array;
+    void operator=(const SortedList<T>& data) {
 		m_size = data.m_size;
 		m_length = data.m_length;
 		m_CurPointer = data.m_CurPointer;
-		m_Array = new T[m_size];
 		for (int i = 0; i < m_length; i++) {
 			m_Array[i] = data.m_Array[i];
 		}
@@ -126,7 +124,7 @@ SortedList<T>::SortedList(int size) {		//변수 있는 동적할당
 
 template<typename T>
 SortedList<T>::~SortedList() {					//소멸자
-	delete[] m_Array;
+//	delete[] m_Array;
 }
 
 template<typename T>
@@ -137,7 +135,6 @@ int SortedList<T>::Add(T& data) {			//아이템 더하기
 		return 1;
 	}
 	else if (m_length == m_size) {				//꽉찼다면 에러 표시
-		cout << "Array is pull/n";
 		return 0;
 	}
 	else {
@@ -145,7 +142,7 @@ int SortedList<T>::Add(T& data) {			//아이템 더하기
 		bool complete = false;				//맨 마지막에 추가되는 것을 확인
 		ResetList();
 		GetNextItem(temp);
-		while (m_CurPointer < m_length&& m_CurPointer != -1) {
+        while (m_CurPointer <= m_length && m_CurPointer != -1) {
 			if (temp < data) {				//오름차순이기 때문에 기존 요소보다 고유 라벨이 크다면 뒷쪽에 위치
 				GetNextItem(temp);
 				continue;
@@ -159,8 +156,7 @@ int SortedList<T>::Add(T& data) {			//아이템 더하기
 				complete = true;
 				break;
 			}
-			else if (temp == data) {							//고유 라벨이 같은 경우는 없기때문에 add는 return 0로 끝남
-				ResetList();
+            else {							//고유 라벨이 같은 경우는 없기때문에 add는 return 0로 끝남
 				return 0;
 			}
 		}
@@ -168,7 +164,6 @@ int SortedList<T>::Add(T& data) {			//아이템 더하기
 			m_Array[m_length] = data;
 			m_length++;
 		}
-		ResetList();
 		return 1;
 	}
 }
@@ -253,7 +248,7 @@ int SortedList<T>::Get(T& data) {
 }
 
 template<typename T>
-int SortedList<T>::Delete(T data) {
+int SortedList<T>::Delete(T& data) {
 	if (m_length == 0) {
 		return 0;
 	}
