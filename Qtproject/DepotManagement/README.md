@@ -1,5 +1,5 @@
 # DepotManagement
-Storage, Floor, layer 단으로 물건이 저장된 위치를 정리해놓는 프로그램.
+Storage, Floor, layer 단으로 물건이 저장된 위치를 정리해놓는 프로그램.<br>
 
 ---
 
